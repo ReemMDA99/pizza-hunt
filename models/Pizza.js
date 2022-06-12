@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 // create the Pizza model using the PizzaSchema
-const Pizza = require('./Pizza');
-const Comment = require('./Comment');
+
 const dateFormat = require('../utils/dateFormat');
 
 const PizzaSchema = new Schema({
@@ -39,7 +38,8 @@ const PizzaSchema = new Schema({
 // get total count of comments and replies on retrieval
 PizzaSchema.virtual('commentCount').get(function() {
     return this.comments.length;
-  });
+});
 
+const Pizza = model('Pizza', PizzaSchema);
 
-module.exports = { Pizza, Comment };
+module.exports = Pizza;
